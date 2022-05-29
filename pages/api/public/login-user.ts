@@ -8,12 +8,12 @@ import {
 } from '@backend-utils/responsehandlers/synthesizer'
 import { ILoginUser } from '@backend-utils/interfaces/loginUser'
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<IResponse>
 ) {
   const payload = req.body as ILoginUser
-  verifySecurityQuestionAnswer(payload).then((response) => {
+  return verifySecurityQuestionAnswer(payload).then((response) => {
     return res.status(response.error ? 400 : 201).json(
       response.error
         ? synthesizeErrorResponse({

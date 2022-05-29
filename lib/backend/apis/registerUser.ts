@@ -34,7 +34,7 @@ export const registerUser = async (
     .then((user) =>
       Admin.auth
         .setCustomUserClaims(user.uid, {
-          userRole: 'Super-Admin' as IUserRole,
+          userRole: 'User' as IUserRole,
           securityQuestion: payload.securityQuestion,
           securityAnswer: payload.securityAnswer,
         })

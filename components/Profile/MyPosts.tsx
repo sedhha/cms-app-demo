@@ -236,7 +236,7 @@ export default function MyArticles() {
         <p className="mt-2 text-xs italic text-lime-500">{success}</p>
       ) : null}
       <div className="p-4">
-        {userRole === 'Super-Admin' ? (
+        {
           <div className="flex justify-between w-full">
             <label
               className={
@@ -252,22 +252,24 @@ export default function MyArticles() {
             >
               My Articles
             </label>
-            <label
-              className={
-                'mb-2 block cursor-pointer text-sm font-bold text-gray-700 ' +
-                (inViewMode ? '' : 'underline')
-              }
-              onClick={() =>
-                dispatch({
-                  type: ACTIONTYPES.UPDATE_ARTICLE_NAV,
-                  payload: 'Review Articles',
-                })
-              }
-            >
-              Articles For Review
-            </label>
+            {userRole === 'Super-Admin' ? (
+              <label
+                className={
+                  'mb-2 block cursor-pointer text-sm font-bold text-gray-700 ' +
+                  (inViewMode ? '' : 'underline')
+                }
+                onClick={() =>
+                  dispatch({
+                    type: ACTIONTYPES.UPDATE_ARTICLE_NAV,
+                    payload: 'Review Articles',
+                  })
+                }
+              >
+                Articles For Review
+              </label>
+            ) : null}
           </div>
-        ) : null}
+        }
         {inViewMode ? MyArticles : ArticlesForReview}
       </div>
     </React.Fragment>

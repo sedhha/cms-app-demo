@@ -9,8 +9,8 @@ import {
 import { IBackendPostState } from 'constants/immediate-states/post.state'
 import {
   IUserDetails,
-  withUserProtect,
-} from '@backend-utils/middleware/withUserProtect'
+  withAdminProtect,
+} from '@backend-utils/middleware/withAdminProtect'
 
 type ArticleContent = IBackendPostState & {
   userBody: IUserDetails
@@ -42,4 +42,4 @@ const handler = async (
   )
 }
 
-export default withUserProtect(handler)
+export default withAdminProtect(handler)

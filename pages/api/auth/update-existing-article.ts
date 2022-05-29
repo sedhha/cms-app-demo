@@ -8,8 +8,8 @@ import {
 import { IBackendUpdatePostState } from 'constants/immediate-states/post.state'
 import {
   IUserDetails,
-  withUserProtect,
-} from '@backend-utils/middleware/withUserProtect'
+  withAdminProtect,
+} from '@backend-utils/middleware/withAdminProtect'
 import { updateArticle } from '@backend-utils/apis/addNewArticle'
 
 type ArticleContent = IBackendUpdatePostState & {
@@ -44,4 +44,4 @@ const handler = async (
   )
 }
 
-export default withUserProtect(handler)
+export default withAdminProtect(handler)

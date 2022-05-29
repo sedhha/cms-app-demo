@@ -7,8 +7,8 @@ import {
 } from '@backend-utils/responsehandlers/synthesizer'
 import {
   IUserDetails,
-  withUserProtect,
-} from '@backend-utils/middleware/withUserProtect'
+  withSuperAdminProtect,
+} from '@backend-utils/middleware/withSuperAdminProtect'
 import { approveArticle } from '@backend-utils/apis/approveArticle'
 
 type ArticleContent = {
@@ -35,4 +35,4 @@ const handler = async (
   )
 }
 
-export default withUserProtect(handler)
+export default withSuperAdminProtect(handler)

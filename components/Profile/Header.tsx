@@ -2,7 +2,7 @@ import { NAVIGATION_ROUTES, PROFILE_ROUTES } from 'constants/routes'
 import Link from 'next/link'
 import React from 'react'
 import Auth from '@frontent-utils/firebase-client'
-import { useAppDispatch } from '@redux-imports/tools/hooks'
+import { useAppDispatch, useAppSelector } from '@redux-imports/tools/hooks'
 import { resetToInitState } from '@redux-imports/slices/posts'
 import { useRouter } from 'next/router'
 const activeStyle = 'text-indigo-600 underline'
@@ -20,17 +20,20 @@ export default function Header(props: Props) {
     router.push(NAVIGATION_ROUTES.LOGIN)
   }
   const dispatch = useAppDispatch()
+  const { userRole } = useAppSelector((state) => state.user)
   return (
     <div className="flex flex-row justify-around w-full p-2">
-      <Link href={NAVIGATION_ROUTES.PROFILE_ADD_POST}>
-        <a
-          className={
-            postOpType === PROFILE_ROUTES.ADD_ARTICLES ? activeStyle : ''
-          }
-        >
-          Add Post
-        </a>
-      </Link>
+      {(userRole === 'Admin' || userRole === 'Super-Admin') && (
+        <Link href={NAVIGATION_ROUTES.PROFILE_ADD_POST}>
+          <a
+            className={
+              postOpType === PROFILE_ROUTES.ADD_ARTICLES ? activeStyle : ''
+            }
+          >
+            Add Post
+          </a>
+        </Link>
+      )}
       <Link href={NAVIGATION_ROUTES.PROFILE_VIEW_POST}>
         <a
           className={
@@ -41,15 +44,17 @@ export default function Header(props: Props) {
         </a>
       </Link>
 
-      <Link href={NAVIGATION_ROUTES.PROFILE_MY_POST}>
-        <a
-          className={
-            postOpType === PROFILE_ROUTES.REVIEW_ARTICLES ? activeStyle : ''
-          }
-        >
-          My Posts
-        </a>
-      </Link>
+      {(userRole === 'Admin' || userRole === 'Super-Admin') && (
+        <Link href={NAVIGATION_ROUTES.PROFILE_MY_POST}>
+          <a
+            className={
+              postOpType === PROFILE_ROUTES.REVIEW_ARTICLES ? activeStyle : ''
+            }
+          >
+            My Posts
+          </a>
+        </Link>
+      )}
       <a onClick={signOut} className="cursor-pointer">
         Sign Out
       </a>

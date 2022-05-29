@@ -47,7 +47,7 @@ export default function LoginPage() {
   const loginSuccess = () => {
     dispatch({ type: ACTIONTYPES.UPDATE_LOADING, payload: false })
     dispatch({ type: ACTIONTYPES.UPDATE_ERROR_MESSAGE, payload: undefined })
-    router.push(NAVIGATION_ROUTES.PROFILE_ADD_POST)
+    router.push(NAVIGATION_ROUTES.PROFILE_VIEW_POST)
   }
   const logInIntermediate = () => {
     dispatch({ type: ACTIONTYPES.UPDATE_LOADING, payload: true })

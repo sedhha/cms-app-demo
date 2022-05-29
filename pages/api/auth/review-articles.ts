@@ -5,7 +5,7 @@ import {
   synthesizeErrorResponse,
   IResponse,
 } from '@backend-utils/responsehandlers/synthesizer'
-import { withUserProtect } from '@backend-utils/middleware/withUserProtect'
+import { withSuperAdminProtect } from '@backend-utils/middleware/withSuperAdminProtect'
 import { getReviewArticles } from '@backend-utils/apis/getInReviewArticles'
 
 const handler = async (_: NextApiRequest, res: NextApiResponse<IResponse>) => {
@@ -27,4 +27,4 @@ const handler = async (_: NextApiRequest, res: NextApiResponse<IResponse>) => {
     )
 }
 
-export default withUserProtect(handler)
+export default withSuperAdminProtect(handler)
